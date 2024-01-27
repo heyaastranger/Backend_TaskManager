@@ -4,18 +4,22 @@ const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 const dotenv = require("dotenv");
 const ToDoList = require("./models/ToDoList");
-const port = 3000;
+// const port = 3000;
 
 const app = express();
 
 app.use(
-    cors({
-      origin: "https://heyaastranger.github.io",
-      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-      credentials: true,
-      optionsSuccessStatus: 204, // Respond with 204 No Content for OPTIONS requests
-    })
-  );
+  cors({
+    origin: [
+      "https://heyaastranger.github.io",
+      "http://localhost:5500",
+      "http://127.0.0.1:5500/",
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204, // Respond with 204 No Content for OPTIONS requests
+  })
+);
 // app.use(cors());
 app.use(bodyParser.json());
 dotenv.config();
@@ -71,7 +75,7 @@ app.use("/task", async (req, res, next) => {
 });
 
 app.use("/", async (req, res, next) => {
-  res.json({ message: "This is the backend" });
+  res.status(200).json({ message: "This is the backend" });
 });
 mongoose
   .connect(
@@ -79,8 +83,8 @@ mongoose
   )
   .then(() => {
     console.log("Connection Successful");
-    app.listen(port, () => {
-      console.log(`Server is running on http://localhost:${port}`);
+    app.listen(process.env.PORT || 3000, () => {
+      console.log(`Server is running on http://localhost:${process.env.PORT}`);
     });
   })
   .catch((error) => {

@@ -8,11 +8,13 @@
   </head>
   <body>
     <div class="container">
-      <h1>Task Manager</h1>
-      <div id="taskInput">
-        <input type="text" id="task" placeholder="Enter task" />
-        <button type="submit" onclick="addTask()">Add Task</button>
-      </div>
+      <form>
+        <h1>Task Manager</h1>
+        <div id="taskInput">
+          <input type="text" id="task" placeholder="Enter task" />
+          <button onclick="addTask()">Add Task</button>
+        </div>
+      </form>
       <div id="tasks">
         <!-- Task items will be appended here -->
       </div>
@@ -20,5 +22,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-
-
