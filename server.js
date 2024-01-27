@@ -16,7 +16,7 @@ const app = express();
 //       optionsSuccessStatus: 204, // Respond with 204 No Content for OPTIONS requests
 //     })
 //   );
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.json());
 dotenv.config();
 
@@ -46,26 +46,7 @@ app.put("/tasks/:id", async (req, res) => {
   }
 });
 
-// app.use("/", async (req, res, next) => {
-//   const { task } = req.body;
-// if(task)
-//   try {
-//     const newToDoList = new ToDoList({
-//       task,
-//     });
-
-//     await newToDoList.save();
-//     res.status(201).json({
-//       message: "All the best for your Task",
-//     });
-//   } catch (error) {
-//     res.status(500).json({ Message: "Something went wrong" });
-//   }
-//   else{
-//     res.status(500).json({ Message: "Something went wrong" });
-//   }
-// });
-app.use("/", async (req, res, next) => {
+app.use("/task", async (req, res, next) => {
   const { task } = req.body;
 
   if (task) {
@@ -89,6 +70,9 @@ app.use("/", async (req, res, next) => {
   }
 });
 
+app.use("/", async (req, res, next) => {
+  res.json({ message: "This is the backend" });
+});
 mongoose
   .connect(
     `mongodb+srv://${process.env.DBUSER}:${process.env.DBPASSWORD}@cluster0.hsil95h.mongodb.net/BACKEND-TASKMANAGER`
