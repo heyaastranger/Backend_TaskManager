@@ -8,15 +8,15 @@ const port = 3000;
 
 const app = express();
 
-// app.use(
-//     cors({
-//       origin: "http://localhost:3000",
-//       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//       credentials: true,
-//       optionsSuccessStatus: 204, // Respond with 204 No Content for OPTIONS requests
-//     })
-//   );
-app.use(cors());
+app.use(
+    cors({
+      origin: "https://heyaastranger.github.io",
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      credentials: true,
+      optionsSuccessStatus: 204, // Respond with 204 No Content for OPTIONS requests
+    })
+  );
+// app.use(cors());
 app.use(bodyParser.json());
 dotenv.config();
 
